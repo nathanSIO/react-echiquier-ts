@@ -8,128 +8,96 @@ import { toHaveAccessibleErrorMessage } from "@testing-library/jest-dom/matchers
 import { CustomSquareProps } from "react-chessboard/dist/chessboard/types";
 
 function App() {
-  const [counter, setCounter] = useState<number>(0);
-  const [position, setPosition] = useState<string>("");
-  // const square ;
 
-  function getSquare(squareParam: any){
-    if(!squareParam){
-      console.log("null");
+
+  function nameColumn(col: any){
+    // console.log("colomun : " + col)
+    switch (col){
+      case 0:
+        col = "A";
+        break;
+      
+      case 1 :
+        col = "B"
+        break;  
+
+      case 2:
+        col = "C";
+        break;
+      
+      case 3 :
+        col = "D"
+        break;
+
+      case 4:
+        col = "E";
+        break;
+      
+      case 5 :
+        col = "F"
+        break;
+
+      case 6 :
+        col = "G"
+        break;
+
+      case 7 :
+        col = "F"
+        break;
     }
-    else {
-      console.log(squareParam);
-    }
-    // CustomSquareRenderer
-    
-    return ( 
-      <div > Bonjour</div>
-    );
+    // console.log("column after" + col);
+
+    return col ;
     
   }
 
-  const CustomSquareRenderer = forwardRef<HTMLDivElement, CustomSquareProps>((props, ref) => {
-    const { children, square, squareColor, style } = props;
-      
+  function generateChessBoard() {
+    const chessBoard = [];
+    const boardSize = 8;
+  
+    for (let row = 0; row < boardSize; row++) {
+      const rowSquares = [];
+  
+      for (let col = 0; col < boardSize; col++) {
+        
+
+
+        // Alterner les cases noires et blanches
+        const isBlackSquare = (row + col) % 2 === 1;
+  
+        // Créer une case avec une classe différente pour les cases noires
+        rowSquares.push(
+          <div onClick={(event) => console.log(row +""+ nameColumn(col))}
+            key={`${row}-${col}`}
+            className={`square ${isBlackSquare ? 'black' : 'white'}`}
+          >
+            <button >{`${row}${nameColumn(col)}`}</button>
+            {/* Afficher les pièces d'échecs ici si nécessaire */}
+          </div>
+        );
+      }
+  
+      // Ajouter la ligne au tableau d'échecs
+      chessBoard.push(
+        <div key={row} className="chess-row">
+          {rowSquares}
+        </div>
+      );
+    }
+  
+    return chessBoard;
+  };
+
+
     return (
-      <div  ref={ref} style={{ ...style, position: "relative" }}>
-        {children}
-        <button
-          style={{
-            position: "absolute",
-            right: 0,
-            bottom: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: 16,
-            width: 16,
-            borderTopLeftRadius: 6,
-            backgroundColor: squareColor === "black" ? "#064e3b" : "#312e81",
-            color: "#fff",
-            fontSize: 14,
-          }}
-        >
-          {square}
-        </button>
+      <div className="chessBoard">
+        {/* Appeler la fonction pour générer la table d'échecs */}
+        {generateChessBoard()}
       </div>
-          );
-      });
+    );
+  };
 
-  function setNomPiece(piece: string){
-    console.log(piece);
-    switch (piece) {
-      case "wP":
-        piece = "Pion blanc";
-        break;
-
-      case "bP":
-        piece = "Pion noir";
-        break;
-
-      case "wR":
-        piece = "Tour blanche";
-        break;
-      
-      case "bR":
-        piece = "Tour noire";
-        break;
-
-      case "wN":
-        piece = "Cavalier blanc";
-        break;
-
-      case "bN":
-        piece = "Cavalier noir";
-        break;
-
-      case "wB":
-        piece = "Fou blanc";
-        break;
-
-      case "bB":
-        piece = "Fou noir";
-        break;
-
-      case "wQ":
-        piece = "Reine Blanche";
-        break;
-
-      case "bQ":
-        piece = "Reine noire";
-        break;
-
-      case "wK":
-        piece = "Roi blanc";
-        break;
-
-      case "bK":
-        piece = "Roi noir ";
-        break;
-    }
-    return piece
-  }
-
-  return (
-    <div className="ChessBoard" onClick={(event) => console.log(event)}>
-      <Chessboard customArrowColor="rgb(255,170,0)"
-        // id="customSquare"
-        customSquare={CustomSquareRenderer}
-        showBoardNotation={false}
-        onPieceClick={  (event) => setPosition(setNomPiece(event))}
-        onSquareClick={(event) => setPosition((prevState) => prevState + " sur la case " + event)}
-        onSquareRightClick={(event) => getSquare(event)}
-        id="chessboard"
-      ></Chessboard>
-
-      {/* <button onClick={() => setCounter((prevState) => prevState +1)}>Plus 1 </button><br></br>
-      <button onClick={() => setCounter((prevState) => prevState -1)}>Moins 1 </button>
-      <DisplayCounter counter={counter} /> */}
-
-      <DisplayPosition position={position} />
-    </div>
-  );
-}
-
+ 
+ 
 export default App;
 
-// ((event: string) => setSquare(event)) && 
