@@ -1,14 +1,6 @@
-import React, { forwardRef, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { Chessboard } from "react-chessboard";
-import { DisplayCounter } from "./Service/Display/diplayCounter";
-import { DisplayPosition } from "./Service/Display/displayPosition";
-import { toHaveAccessibleErrorMessage } from "@testing-library/jest-dom/matchers";
-import { CustomSquareProps } from "react-chessboard/dist/chessboard/types";
 
 function App() {
-
 
   function nameColumn(col: any){
     // console.log("colomun : " + col)
@@ -72,7 +64,8 @@ function App() {
             className={`square ${isBlackSquare ? 'black' : 'white'}`}
           >
             <button >{`${row}${nameColumn(col)}`}</button>
-            {/* Afficher les pièces d'échecs ici si nécessaire */}
+            {/* {Piece()} */}
+           
           </div>
         );
       }
@@ -91,13 +84,9 @@ function App() {
 
     return (
       <div className="chessBoard">
-        {/* Appeler la fonction pour générer la table d'échecs */}
         {generateChessBoard()}
       </div>
     );
-  };
-
- 
- 
+  }; 
 export default App;
 
