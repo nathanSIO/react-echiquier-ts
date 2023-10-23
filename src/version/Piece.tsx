@@ -11,7 +11,7 @@ export default class Piece extends Component<PieceProps, any> {
     }
 
     render() {
-        return <div style={{textAlign:"center"}}>
+        return <div style={{textAlign:"center",fontSize:"x-large"}}>
             {this.props.symbol}
         </div>
     }

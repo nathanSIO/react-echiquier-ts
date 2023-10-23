@@ -26,7 +26,7 @@ export default class Square extends Component<SquareProps, any> {
         }
     }
     render() {
-        return <td style={{backgroundColor:this.isBlack()?"grey":"white", width:"30px", height:"30px"}} onClick={() => alert(this.props.pieceName+" à la position ["+(this.props.x+1)+","+(this.props.y+1)+"] de couleur "+this.translateColor(this.props.color))}>
+        return <td style={{backgroundColor:this.isBlack()?"grey":"white", width:"50px", height:"50px"}} onClick={() => alert(this.props.pieceName+" à la position ["+(this.props.x+1)+","+(this.props.y+1)+"] de couleur "+this.translateColor(this.props.color))}>
             {this.props.children}
         </td>
     }
