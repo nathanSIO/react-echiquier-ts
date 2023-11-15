@@ -285,8 +285,8 @@ export function getNameBlackPiece(keySquare: any){
         case "6H" :
           nomPiece = "Pion NOIR"
           break;
-        // default :
-        //   nomPiece = "Case Vide"
+        default :
+          nomPiece = "Case Vide"
       }
       // console.log("Position : " + nomPiece);
       return nomPiece;
