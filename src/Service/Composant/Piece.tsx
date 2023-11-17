@@ -190,6 +190,7 @@ export function nameColumn(col: any){
   
 export function getNameWhitePiece(keySquare: any){
       
+      console.log("le nom de ma piece " + nomPiece)
       switch (keySquare) {
   
         case "0A" :
@@ -233,8 +234,18 @@ export function getNameWhitePiece(keySquare: any){
         case "1G" :
         case "1H" :
           nomPiece = "Pion Blanc"
+          break;
+
+        default :
+          nomPiece="";
       }
-      getNameBlackPiece(keySquare);
+
+      console.log("le nom de ma pièce 2 " + nomPiece)
+      if (nomPiece == ""){
+        console.log("je rentre ")
+        getNameBlackPiece(keySquare);
+      }
+      
       return nomPiece;
 }
 
